@@ -79,6 +79,16 @@ section.active { display: flex; }
   background-color: #5e7d60;
 }
 
+#select {
+  background-color: #80ad83;
+}
+#user {
+  background-color: #80ad83;
+}
+#company {
+  background-color: #80ad83;
+}
+
 .logo-container, .logo-main {
   position: absolute;
   top: 20px;
@@ -282,6 +292,11 @@ form {
   margin: 0 auto;
 }
 
+.titulo-cadastro {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
 form label { text-align: left; font-weight: bold; margin-bottom: 5px; }
 
 form input {
@@ -393,4 +408,5 @@ form button:hover { background-color: #006b00; }
   .icon { width: 100px; height: 100px; }
   .icon svg { width: 50px; height: 50px; }
 }
+
 
