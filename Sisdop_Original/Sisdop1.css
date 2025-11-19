@@ -75,6 +75,10 @@ section {
 
 section.active { display: flex; }
 
+#login {
+  background-color: #5e7d60;
+}
+
 .logo-container, .logo-main {
   position: absolute;
   top: 20px;
@@ -389,3 +393,4 @@ form button:hover { background-color: #006b00; }
   .icon { width: 100px; height: 100px; }
   .icon svg { width: 50px; height: 50px; }
 }
+
