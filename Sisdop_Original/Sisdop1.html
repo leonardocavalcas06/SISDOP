@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sisdop</title>
+
+  <link rel="icon" href="Árvore do sisdop favicon.png">
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="Sisdop1.css">
+
+  <!-- GOOGLE LOGIN -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+
+  <!-- ANIMAÇÃO DE CAPA -->
+  <div class="splash" id="splash">
+    <div class="circle"></div>
+    <img src="Logo Dourada.png" alt="Logo SISDOP" class="logo">
+  </div>
+
+  <!-- LOGIN -->
+  <section id="login" class="active">
+    <div class="logo-container">
+      <img src="Logo Dourada.png" alt="Logo SISDOP">
+    </div>
+
+    <div class="login-container" id="loginBox">
+      <h1>Seja bem-vindo</h1>
+      <p class="subtitle">Efetue seu login</p>
+
+      <div class="input-field">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" placeholder="Digite seu usuário">
+      </div>
+
+      <div class="input-field">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite sua senha">
+      </div>
+
+      <button class="btn-login" onclick="showSection('menu')">Entrar</button>
+
+      <div class="divider">Ou</div>
+
+      <!-- GOOGLE LOGIN COM SEU NOVO CLIENT ID -->
+      <div id="g_id_onload"
+        data-client_id="419883131167-ffkeqm4hbc5a7rlhjb5e4afsqu1ekcdg.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+      </div>
+
+      <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="continue_with"
+        data-shape="pill"
+        data-logo_alignment="left">
+      </div>
+
+      <p class="register-link">Ainda não se cadastrou?
+        <a href="#" onclick="showSection('select')">Cadastre-se agora</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- SELEÇÃO -->
+  <section id="select">
+    <img src="Logo Dourada.png" alt="Logo SISDOP" class="logo-main">
+    <button class="btn-voltar" onclick="showSection('login')">Voltar</button>
+
+    <div class="select-container">
+      <h2>Selecione o tipo de cadastro:</h2>
+
+      <div class="options">
+        <div class="option" onclick="showSection('user')">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </div>
+          Usuário
+        </div>
+
+        <div class="option" onclick="showSection('company')">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" ry="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          Empresa
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CADASTRO USUÁRIO -->
+  <section id="user">
+    <img src="Logo Dourada.png" class="logo-main">
+    <button class="btn-voltar" onclick="showSection('select')">Voltar</button>
+
+    <div>
+      <h2>Cadastro de Usuário:</h2>
+      <form onsubmit="event.preventDefault(); showSection('login')">
+        <div><label>Nome:</label><input type="text" required></div>
+        <div><label>Sobrenome:</label><input type="text" required></div>
+        <div><label>E-mail:</label><input type="email" required></div>
+        <div><label>Número de celular:</label><input type="tel" required></div>
+        <div><label>Senha:</label><input type="password" required></div>
+        <div><label>Tipo de Usuário:</label><input type="text" required></div>
+        <div><label>Confirme sua senha:</label><input type="password" required></div>
+        <div><label>CPF:</label><input type="text" required></div>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CADASTRO EMPRESA -->
+  <section id="company">
+    <img src="Logo Dourada.png" class="logo-main">
+    <button class="btn-voltar" onclick="showSection('select')">Voltar</button>
+
+    <div>
+      <h2>Cadastro de Empresa:</h2>
+      <form onsubmit="event.preventDefault(); showSection('login')">
+        <div><label>Nome da ONG:</label><input type="text" required></div>
+        <div><label>E-mail:</label><input type="email" required></div>
+        <div><label>CNPJ:</label><input type="text" required></div>
+        <div><label>Número de celular:</label><input type="tel" required></div>
+        <div><label>Senha:</label><input type="password" required></div>
+        <div><label>Confirme sua senha:</label><input type="password" required></div>
+        <button>Cadastrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="menu-container">
+      <nav class="sidebar">
+        <a onclick="showSection('menu')">Menu</a>
+        <a>ONGs</a>
+        <a>Usuários</a>
+        <a>Consulta</a>
+        <a>Ações</a>
+        <a onclick="showSection('login')">Sair</a>
+      </nav>
+
+      <main class="main">
+        <img src="Logo Dourada.png">
+      </main>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT EXTERNO -->
+  <script src="Sisdop1.js"></script>
+
+</body>
+</html>
+
+
+
