@@ -3,6 +3,7 @@ const supabase = createClient('https://kamjqsmvxqfogrsppfou.supabase.co', 'sb_pu
     
 
 async function getOngsUpdateHtml() {
+    console.log("Pegando ongs")
     const listaOngs = document.querySelector("#divCardsOngs")
     let { data, error } = await supabase
   .from('empresas')

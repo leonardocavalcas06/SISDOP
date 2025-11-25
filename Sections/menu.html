@@ -1,5 +1,16 @@
-  <!-- MENU -->
-  <section id="menu">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../StyleSheets/main.css">
+    <script src="../Scripts/main.js" defer></script>
+    <script type="module" src="../Scripts/supabase.js"  defer></script>
+  </head>
+  <body>
+    <!-- MENU -->
+  <section class="active" id="menu">
     <div class="menu-container">
       <nav class="sidebar" id="sidebar">
         <a onclick="showMenuContent('menu-home')" class="active">Menu</a>
@@ -7,12 +18,12 @@
         <a onclick="showMenuContent('usuarios')">Usuários</a>
         <a onclick="showMenuContent('consulta')">Consulta</a>
         <a onclick="showMenuContent('acoes')">Ações</a>
-        <a onclick="showSection('login')">Sair</a>
+        <a href="../index.html">Sair</a>
       </nav>
 
       <main class="main">
         <!-- A imagem da logo agora é um fundo para a área principal -->
-        <img src="Logo Dourada.png" class="main-bg-logo">
+        <img src="../public/assets/Logo Dourada.png" class="main-bg-logo">
         <!-- Conteúdo Home do Menu -->
         <div id="menu-home" class="menu-content active"></div>
 
@@ -187,3 +198,7 @@
       </main>
     </div>
   </section>
+
+  </body>
+  </html>
+  
