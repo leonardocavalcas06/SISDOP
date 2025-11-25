@@ -1,0 +1,527 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==================== ANIMAÇÃO INICIAL ==================== */
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+.splash.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  background-color: #1b5e20;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 40%;
+  animation: grow 2s ease-in-out forwards;
+}
+
+@keyframes grow {
+  0% { transform: scale(1); }
+  40% { transform: scale(20); }
+  100% { transform: scale(100); }
+}
+
+.logo {
+  position: absolute;
+  width: 300px;
+  max-width: 80%;
+  opacity: 0;
+  z-index: 10;
+  animation: fadeIn 2s ease-in-out 2s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ==================== SISTEMA PRINCIPAL ==================== */
+section {
+  display: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+section.active { display: flex; }
+
+#login {
+  background-color: #80ad83;
+}
+
+#select {
+  background-color: #80ad83;
+}
+#user {
+  background-color: #80ad83;
+}
+#company {
+  background-color: #80ad83;
+}
+
+.logo-container, .logo-main {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo-container img, .logo-main {
+  width: 160px;
+  height: auto;
+}
+
+.btn-voltar {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.btn-voltar:hover { background-color: #1b5e20; }
+
+.login-container {
+  text-align: center;
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+.login-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.login-container h1 {
+  color: #2e7d32;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.login-container p.subtitle {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.input-field { 
+  display: flex; 
+  flex-direction: column; 
+  margin-bottom: 15px; 
+  text-align: left; 
+}
+
+.input-field label {
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.input-field input, .password-wrapper input {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 45px; /* Espaço para o ícone */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: #2e7d32;
+}
+
+.input-field input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 5px rgba(46, 125, 50, 0.4);
+}
+
+.btn-login {
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-login:hover { background-color: #1b5e20; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #777;
+  margin: 25px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+.divider:not(:empty)::before { margin-right: .75em; }
+.divider:not(:empty)::after { margin-left: .75em; }
+
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 25px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.btn-google img { width: 20px; height: 20px; }
+.btn-google:hover { background-color: #f5f5f5; }
+
+.register-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register-link a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover { text-decoration: underline; }
+
+.select-container { text-align: center; }
+
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.option:hover { transform: scale(1.05); }
+
+.icon {
+  background-color: #008000;
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Ajuste para aplicar o estilo apenas nos ícones de seleção (Usuário/Empresa) */
+.option .icon svg {
+  height: 70px;
+  stroke: #fff;
+  stroke-width: 3;
+  fill: none;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 40px;
+  width: 70%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.titulo-cadastro {
+  margin-bottom: 40px;
+  text-align: center;
+}
+/* Nos formulários de cadastro, o div que agrupa label e input */
+.password-field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+form label { text-align: left; font-weight: bold; margin-bottom: 5px; }
+
+/* Estilo para os inputs dos formulários de cadastro (Usuário/Empresa) */
+form .password-wrapper input, form div > input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #000;
+  border-radius: 25px;
+  font-size: 14px;
+  background-color: #fff; /* Garante o fundo branco */
+}
+
+form button {
+  grid-column: span 2;
+  background-color: #008000;
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background-color 0.2s;
+  margin-top: 20px;
+}
+
+form button:hover { background-color: #006b00; }
+
+.menu-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 180px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  margin: 15px 0;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sidebar a:hover { background-color: #008000; color: #fff; }
+
+.main {
+  flex: 1;
+  background-color: #0c4022;
+  position: relative; /* Essencial para posicionar os filhos absolutos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* MENU principal imagem tamanho */
+.main-bg-logo {
+  width: 510px;
+  max-width: 90%;
+  height: auto;
+  opacity: 1; /* Logo com a cor original */
+  z-index: 0; /* Garante que a logo fique no fundo */
+}
+
+/* ==================== ESTILOS DO DASHBOARD (MENU) ==================== */
+.menu-content {
+  display: none;
+  position: absolute; /* Posiciona o conteúdo sobre a área main */
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  animation: fadeInContent 0.5s;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  color: white;
+  z-index: 2; /* Garante que o conteúdo fique acima da logo */
+}
+
+.menu-content.active {
+  display: block;
+}
+
+.menu-content h2 {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #008000;
+  padding-bottom: 0.5rem;
+}
+
+.sidebar a.active {
+  background-color: #008000;
+  color: #fff;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  backdrop-filter: blur(5px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #f0f0f0;
+}
+
+.card-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn-edit { background-color: #2196F3; }
+.btn-delete { background-color: #f44336; }
+
+@keyframes fadeInContent {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 1024px) {
+  .login-container { width: 350px; padding: 35px; }
+  form { grid-template-columns: 1fr; width: 90%; }
+  .options { gap: 50px; }
+}
+
+@media (max-width: 768px) {
+  .btn-voltar { top: 20px; right: 20px; font-size: 0.8rem; padding: 6px 14px; }
+  .login-container { width: 300px; padding: 25px; }
+  .option .icon { width: 120px; height: 120px; }
+  .icon svg { width: 60px; height: 60px; }
+  .sidebar { width: 150px; }
+}
+
+@media (max-width: 600px) {
+  body, html { overflow-y: auto; }
+  .login-container { width: 90%; padding: 25px 20px; }
+  .options { flex-direction: column; gap: 40px; margin-top: 40px; }
+  .logo-container img, .logo-main { width: 120px; }
+  form { grid-template-columns: 1fr; width: 100%; }
+  .menu-container { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+  }
+  .sidebar a {
+    margin: 10px 0;
+    text-align: center;
+    padding: 6px 10px;
+  }
+  .main img { width: 300px; }
+}
+
+@media (max-width: 400px) {
+  .login-container h1 { font-size: 1.4rem; }
+  .btn-login { font-size: 0.9rem; }
+  .icon { width: 100px; height: 100px; }
+  .icon svg { width: 50px; height: 50px; }
+}
