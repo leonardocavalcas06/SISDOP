@@ -3,7 +3,6 @@ const supabase = createClient('https://kamjqsmvxqfogrsppfou.supabase.co', 'sb_pu
     
 
 async function getOngsUpdateHtml() {
-    console.log("Pegando ongs")
     const listaOngs = document.querySelector("#divCardsOngs")
     let { data, error } = await supabase
   .from('empresas')
@@ -13,9 +12,8 @@ if (error) {
     console.error(error)
     return
 }
-
-console.log(data)
-
+    if (!listaOngs) return
+    listaOngs.innerHTML = ''
 data.forEach(element => {
     const card = document.createElement("div")
     card.classList.add('card')
@@ -31,10 +29,30 @@ data.forEach(element => {
             <p>Área: ${area}</p>
             <div class="card-actions">
             <button class="btn-edit btn-secondary" onclick="editOng('${nomeEmpresa}')">Editar</button>
-            <button class="btn-delete btn-danger">Excluir</button>
+            <button class="btn-delete btn-danger" data-ongid=${element.id} >Excluir</button>
             </div>`
 listaOngs.appendChild(card)
 });
+}
+
+async function removeOng(id) {
+    const response = confirm("Deseja realmente remover essa ong?")
+    if (!response) {
+        return
+    }
+
+    const {data,error} = await supabase
+    .from('empresas')
+    .delete()
+    .eq('id',id) 
+    .select()
+    .single()
+
+    console.log(data)
+    await getOngsUpdateHtml()
+    await setEventListeners()
+    alert(`Ong ${data.nome} removida com sucesso`)
+    document.querySelector("#sidebar > a.active").click()
 }
 
 async function addOng(nome,email,cnpj,telefone,senha,area) {
@@ -59,6 +77,7 @@ async function addOng(nome,email,cnpj,telefone,senha,area) {
 
 async function handleFormSubmit(e) {
     e.preventDefault()
+
     const form = e.target
     const formData = Object.fromEntries(new FormData(form))
     // if (!validarCNPJ(formData.cnpj)) {
@@ -75,13 +94,20 @@ async function handleFormSubmit(e) {
     );
 
     console.log("Adicionada a ong " + formData.nome)
+    alert("Adicionada a ong " + formData.nome)
+    window.location.href = '../index.html'
     form.reset()
-    showSection('login')
+    getOngsUpdateHtml()
 }
 
+function setEventListeners() {
+    // Adicionar event listeners
+    const deleteButtons = document.querySelectorAll(".btn-delete")
+    deleteButtons.forEach((b) => b.addEventListener("click",() => removeOng(b.dataset.ongid)))
+    const form = document.querySelector("#formCadastro")
+    form.addEventListener("submit",(e) => handleFormSubmit(e))
+}
 
 //Rodar funções estáticas
-getOngsUpdateHtml()
-
-const form = document.querySelector("#formCadastro")
-form.addEventListener("submit",(e) => handleFormSubmit(e))
+await getOngsUpdateHtml()
+setEventListeners()

@@ -62,11 +62,16 @@ window.addEventListener('load', () => {
   const splash = document.getElementById('splash');
   const loginBox = document.getElementById('loginBox');
 
-  setTimeout(() => {
-    splash.classList.add('fade-out');
+  try {
     setTimeout(() => {
-      splash.style.display = 'none';
-      loginBox.classList.add('show');
-    }, 1000);
-  }, 3500);
+      splash.classList.add('fade-out');
+      setTimeout(() => {
+        splash.style.display = 'none';
+        loginBox.classList.add('show');
+      }, 1000);
+    }, 3500);
+  }
+  catch {
+    
+  }
 });
