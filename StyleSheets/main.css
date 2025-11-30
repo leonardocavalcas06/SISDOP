@@ -493,7 +493,9 @@ form button:hover { background-color: #006b00; }
   .login-container { width: 300px; padding: 25px; }
   .option .icon { width: 120px; height: 120px; }
   .icon svg { width: 60px; height: 60px; }
-  .sidebar { width: 150px; }
+  .sidebar { 
+    overflow: auto;
+    width: 150px; }
 }
 
 @media (max-width: 600px) {
@@ -504,6 +506,7 @@ form button:hover { background-color: #006b00; }
   form { grid-template-columns: 1fr; width: 100%; }
   .menu-container { flex-direction: column; }
   .sidebar {
+    overflow: auto;
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
