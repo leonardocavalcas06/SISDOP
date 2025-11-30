@@ -362,6 +362,7 @@ form button:hover { background-color: #006b00; }
 }
 
 .sidebar {
+  overflow: auto;
   width: 180px;
   background-color: #f5f5f5;
   border-right: 1px solid #ccc;
