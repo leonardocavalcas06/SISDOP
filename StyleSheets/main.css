@@ -117,7 +117,7 @@ section {
 
 @media (max-width: 600px) {
   .logo-container {
-    display: none;
+    display: none;;
   }
   
 }
@@ -336,17 +336,44 @@ section {
   fill: none;
 }
 
+.cadastro-form {
+  height: 100dvh;
+  padding: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 form {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px 40px;
-  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
   max-width: 800px;
-  margin: 0 auto;
+}
+
+form>div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  min-width: 300px;
+}
+
+#areaAtuacao {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .titulo-cadastro {
   margin-bottom: 40px;
+  margin-top: 40px;
   text-align: center;
 }
 /* Nos formulários de cadastro, o div que agrupa label e input */
@@ -355,7 +382,7 @@ form {
   flex-direction: column;
 }
 
-form label { text-align: left; font-weight: bold; margin-bottom: 5px; }
+form label { text-align: left; font-weight: 700; margin-bottom: 5px; }
 
 /* Estilo para os inputs dos formulários de cadastro (Usuário/Empresa) */
 form .password-wrapper input, form div > input {
@@ -368,8 +395,8 @@ form .password-wrapper input, form div > input {
 }
 
 form button {
-  grid-column: span 2;
   background-color: #008000;
+  width: 100%;
   color: #fff;
   border: none;
   padding: 12px 40px;
@@ -513,7 +540,6 @@ form button:hover { background-color: #006b00; }
 /* ==================== RESPONSIVIDADE ==================== */
 @media (max-width: 1024px) {
   .login-container { width: 350px; padding: 35px; }
-  form { grid-template-columns: 1fr; width: 90%; }
   .options { gap: 50px; }
 }
 
@@ -532,7 +558,6 @@ form button:hover { background-color: #006b00; }
   .login-container { width: 90%; padding: 25px 20px; }
   .options { flex-direction: column; gap: 40px; margin-top: 40px; }
   .logo-container img, .logo-main { width: 120px; }
-  form { grid-template-columns: 1fr; width: 100%; }
   .menu-container { flex-direction: column; }
   .sidebar {
     overflow: auto;

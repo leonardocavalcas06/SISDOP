@@ -6,6 +6,7 @@
     <title>SISDOP</title>
     <link rel="stylesheet" href="../StyleSheets/main.css">
     <script src="../Scripts/main.js" defer></script>
+    <script src="../Scripts/supabase.js" type="module" defer></script>
   </head>
   <body>
       <!-- CADASTRO USUÁRIO -->
@@ -16,7 +17,7 @@
           <div class="cadastro-imagem" style="background-image: url('https://via.placeholder.com/600x800/000000/FFFFFF?text=Voluntariado');"></div>
           <div class="cadastro-form">
             <h2 class="titulo-cadastro">Cadastro de Usuário:</h2>
-            <form onsubmit="event.preventDefault(); showSection('login')">
+            <form id="formCadastroUsuarios">
               <div><label for="user-nome">Nome:</label><input type="text" id="user-nome" required></div>
               <div><label for="user-sobrenome">Sobrenome:</label><input type="text" id="user-sobrenome" required></div>
               <div><label for="user-email">E-mail:</label><input type="email" id="user-email" required></div>

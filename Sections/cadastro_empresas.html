@@ -14,11 +14,9 @@
     <img src="../public/assets/Logo Dourada.png" class="logo-main">
     <a href="seleção.html"><button class="btn-voltar btn-secondary">Voltar</button></a>
     
-    <div class="cadastro-container">
-      <div class="cadastro-imagem" style="background-image: url('https://via.placeholder.com/600x800/333333/FFFFFF?text=Comunidade');"></div>
       <div class="cadastro-form">
         <h2 class="titulo-cadastro">Cadastro de Empresa:</h2>
-        <form id="formCadastro" onsubmit="(e) => handleFormSubmit(e)">
+        <form id="formCadastroEmpresas" onsubmit="(e) => handleFormSubmit(e)">
           <div><label for="company-nome">Nome da ONG:</label><input type="text" id="company-nome" name="nome" required></div>
           <div><label for="company-email">E-mail:</label><input type="email" id="company-email" name="email" required></div>
           <div><label for="company-cnpj">CNPJ:</label><input type="text" id="company-cnpj" name="cnpj" required></div>
@@ -41,10 +39,9 @@
               </span>
             </div>
           </div>
-          <div style="grid-column: span 2;"><label for="company-nome">Area de atuação:</label><input type="text" id="area" name="area" required></div>
-          <button class="btn-primary">Cadastrar</button>
+          <div id="areaAtuação"><label for="company-nome">Area de atuação:</label><input type="text" id="area" name="area" required></div>
+          <button class="btn-primary" type="submit">Cadastrar</button>
         </form>
-      </div>
     </div>
   </section>
 </body>

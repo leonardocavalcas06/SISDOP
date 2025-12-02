@@ -75,7 +75,7 @@ async function addOng(nome,email,cnpj,telefone,senha,area) {
     }  
 }
 
-async function handleFormSubmit(e) {
+async function handleFormSubmitEmpresa(e) {
     e.preventDefault()
 
     const form = e.target
@@ -100,12 +100,22 @@ async function handleFormSubmit(e) {
     getOngsUpdateHtml()
 }
 
+function handleFormSubmitUser(e) {
+    console.log('teste')
+    e.preventDefault
+    const form = e.target
+    const formData = Object.fromEntries(new FormData(form))
+    console.log(formData)
+}
+
 function setEventListeners() {
     // Adicionar event listeners
     const deleteButtons = document.querySelectorAll(".btn-delete")
     deleteButtons.forEach((b) => b.addEventListener("click",() => removeOng(b.dataset.ongid)))
-    const form = document.querySelector("#formCadastro")
-    form.addEventListener("submit",(e) => handleFormSubmit(e))
+    const formEmpresa = document.querySelector("#formCadastroEmpresas")
+    const formUsuario = document.querySelector("#formCadastroUsuarios")
+    if (formEmpresa) formEmpresa.addEventListener("submit",(e) => handleFormSubmitEmpresa(e))
+    if (formUsuario) formUsuario.addEventListener("submit",(e) => handleFormSubmitUser(e))
 }
 
 //Rodar funções estáticas
