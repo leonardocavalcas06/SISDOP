@@ -99,6 +99,35 @@ section {
   height: auto;
 }
 
+#logoTitulo {
+  display: block;
+  width: 50px;
+  height: auto;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 30px;
+  left: 10px;
+}
+
+@media (min-width: 600px) {
+  #logoTitulo {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-container {
+    display: none;
+  }
+  
+}
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .btn-voltar {
   position: absolute;
   top: 30px;
