@@ -35,6 +35,39 @@ listaOngs.appendChild(card)
 });
 }
 
+async function getUsersUpdateHtml() {
+    const listaUsers = document.querySelector("#divCardsUsers")
+    let { data, error } = await supabase
+  .from('usuarios')
+  .select('*')   
+
+if (error) {
+    console.error(error)
+    return
+}
+    if (!listaUsers) return
+    listaUsers.innerHTML = ''
+data.forEach(element => {
+    const card = document.createElement("div")
+    card.classList.add('card')
+
+    let nomeEmpresa = element.nome
+    let emailUser = element.email
+    let celular = element.telefone
+    let tipo = element.tipo
+    card.innerHTML = `
+            <h3>${nomeEmpresa}</h3>
+            <p>Email: ${emailUser}</p>
+            <p>Celular: ${celular}</p>
+            <p>Tipo: ${tipo}</p>
+            <div class="card-actions">
+            <button class="btn-edit btn-secondary" onclick="alert('Editando usuário...')">Editar</button>
+            <button class="btn-delete btn-danger" data-userId=${element.id} >Excluir</button>
+            </div>`
+listaUsers.appendChild(card)
+});
+}
+
 async function removeOng(id) {
     const response = confirm("Deseja realmente remover essa ong?")
     if (!response) {
@@ -50,6 +83,7 @@ async function removeOng(id) {
 
     console.log(data)
     await getOngsUpdateHtml()
+    await getUsersUpdateHtml()
     await setEventListeners()
     alert(`Ong ${data.nome} removida com sucesso`)
     document.querySelector("#sidebar > a.active").click()
@@ -67,6 +101,27 @@ async function addOng(nome,email,cnpj,telefone,senha,area) {
             senha: senha,
             area: area
         },
+    ])
+    .select()
+    if (error) {
+        console.error(error)
+        return
+    }  
+}
+
+async function addUser(nome,sobrenome,email,telefone,cpf,senha,tipo) {
+    const {data, error} = await supabase
+    .from('usuarios')
+    .insert([
+        {
+            nome,
+            sobrenome,
+            email,
+            telefone,
+            cpf,
+            tipo,
+            senha,
+        }
     ])
     .select()
     if (error) {
@@ -98,26 +153,33 @@ async function handleFormSubmitEmpresa(e) {
     window.location.href = '../index.html'
     form.reset()
     getOngsUpdateHtml()
+    getUsersUpdateHtml()
 }
 
-function handleFormSubmitUser(e) {
+async function handleFormSubmitUser(e) {
+    e.preventDefault()
     console.log('teste')
-    e.preventDefault
     const form = e.target
     const formData = Object.fromEntries(new FormData(form))
     console.log(formData)
+    await addUser(formData.nome,formData.sobrenome,formData.email,formData.celular,formData.cpf,formData.senha,formData.tipo)
+    alert('Usuário adicionado com sucesso!')
+    window.location.href = '../index.html'
 }
 
 function setEventListeners() {
+    console.log('Setting event listeners')
     // Adicionar event listeners
     const deleteButtons = document.querySelectorAll(".btn-delete")
     deleteButtons.forEach((b) => b.addEventListener("click",() => removeOng(b.dataset.ongid)))
     const formEmpresa = document.querySelector("#formCadastroEmpresas")
     const formUsuario = document.querySelector("#formCadastroUsuarios")
+    console.log(formUsuario)
     if (formEmpresa) formEmpresa.addEventListener("submit",(e) => handleFormSubmitEmpresa(e))
     if (formUsuario) formUsuario.addEventListener("submit",(e) => handleFormSubmitUser(e))
 }
 
 //Rodar funções estáticas
 await getOngsUpdateHtml()
+await getUsersUpdateHtml()
 setEventListeners()
