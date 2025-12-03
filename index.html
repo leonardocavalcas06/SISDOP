@@ -26,22 +26,22 @@
       <img src="./public/assets/Logo Dourada.png" alt="Logo SISDOP">
     </div>
 
-    <div class="login-container" id="loginBox">
+    <form class="login-container" id="loginBox">
         <h1>Seja bem-vindo</h1>
         <p class="subtitle">Efetue seu login</p>
         <img src="./public/assets/Logo Dourada.png" alt="Logo SISDOP" id="logoTitulo">
 
       <div class="input-field">
         <label for="usuario">Usuário:</label>
-        <input type="text" id="usuario" placeholder="Digite seu usuário">
+        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário">
       </div>
 
       <div class="input-field">
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" placeholder="Digite sua senha">
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
       </div>
 
-      <button class="btn-login btn-primary"><a href="Sections/menu.html">Entrar</a></button>
+      <button class="btn-login btn-primary">Entrar</button>
 
       <div class="divider">Ou</div>
 
@@ -63,7 +63,7 @@
       <p class="register-link">Ainda não se cadastrou?
         <a href="Sections/seleção.html">Cadastre-se agora</a>
       </p>
-    </div>
+    </form>
   </section>
 
   <!-- JAVASCRIPT EXTERNO -->

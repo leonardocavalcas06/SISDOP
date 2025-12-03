@@ -158,15 +158,27 @@ async function handleFormSubmitEmpresa(e) {
 
 async function handleFormSubmitUser(e) {
     e.preventDefault()
-    console.log('teste')
     const form = e.target
     const formData = Object.fromEntries(new FormData(form))
-    console.log(formData)
     await addUser(formData.nome,formData.sobrenome,formData.email,formData.celular,formData.cpf,formData.senha,formData.tipo)
     alert('Usuário adicionado com sucesso!')
     window.location.href = '../index.html'
 }
 
+async function handleLogin(e) {
+    e.preventDefault()
+    const form = e.target
+    const formData = Object.fromEntries(new FormData(form))
+    if (formData.usuario != 'teste') {
+        alert("Usuário inválido")
+        return
+    }
+    if (formData.senha != 'teste') {
+        alert("Senha inválida")
+        return
+    }
+    window.location.href = 'Sections/menu.html'
+}
 function setEventListeners() {
     console.log('Setting event listeners')
     // Adicionar event listeners
@@ -174,7 +186,9 @@ function setEventListeners() {
     deleteButtons.forEach((b) => b.addEventListener("click",() => removeOng(b.dataset.ongid)))
     const formEmpresa = document.querySelector("#formCadastroEmpresas")
     const formUsuario = document.querySelector("#formCadastroUsuarios")
-    console.log(formUsuario)
+    const formLogin = document.querySelector("#loginBox")
+    console.log(formLogin)
+    if (formLogin) formLogin.addEventListener("submit",(e) => handleLogin(e))
     if (formEmpresa) formEmpresa.addEventListener("submit",(e) => handleFormSubmitEmpresa(e))
     if (formUsuario) formUsuario.addEventListener("submit",(e) => handleFormSubmitUser(e))
 }
